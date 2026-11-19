@@ -1,0 +1,17 @@
+Bước 1: Phân tích lỗi
+Việc dùng song song hai định dạng biến khác nhau trong cùng một prompt mẫu gây ra nhiều trở ngại khi tự động hóa:
+1. Khó chuẩn hóa biểu thức trích xuất và thay thế: Khi viết script, pipeline hoặc workflow tự động hóa (như Python,
+n8n, Make, hay template engine), bạn phải xử lý nhiều quy tắc cú pháp khác nhau thay vì một mẫu chuẩn duy nhất. 
+Chỉ cần thiếu một quy tắc khớp ký tự là biến có thể bị bỏ sót hoặc thay thế sai.
+2. Dễ nhầm lẫn với nội dung thật của prompt: Các dấu ngoặc như `{...}` hoặc `[...]` đôi khi xuất hiện tự nhiên trong 
+văn bản, ví dụ hoặc hướng dẫn định dạng. Khi cú pháp biến không thống nhất, cả người chỉnh sửa lẫn bộ parser/tiền xử 
+lý đều dễ nhầm lẫn đâu là placeholder cần điền giá trị, đâu là chữ bình thường.
+3. Khó kiểm tra tính đầy đủ của dữ liệu đầu vào: Trước khi gọi API hoặc gửi prompt đi hàng loạt, hệ thống thường quét 
+danh sách biến để kiểm tra xem dữ liệu đầu vào có đủ trường hay không. Cú pháp lộn xộn làm tăng nguy cơ thiếu biến,
+điền nhầm biến hoặc lệch tên giữa dữ liệu nguồn và prompt mẫu.
+4. Không đồng nhất ngôn ngữ và quy ước đặt tên: Trộn lẫn tiếng Anh với tiếng Việt hoặc đổi 
+kiểu ngoặc làm giảm khả năng đọc và bảo trì prompt khi có nhiều người cùng sử dụng hoặc mở rộng sang các mẫu email/dịch thuật khác.
+
+Bước 2: Đồng bộ biến số
+Prompt mẫu sau khi đưa toàn bộ biến về định dạng thống nhất [NGÔN_NGỮ] và [ĐỐI_TƯỢNG]:
+>viết một bài chia sẻ về Ứng dụng AI trong Học tập, Nghiên cứu bằng ngôn ngữ [NGÔN_NGỮ]. Dành cho đối tượng [ĐỐI_TƯỢNG].
